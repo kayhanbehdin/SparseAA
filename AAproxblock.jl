@@ -1,8 +1,6 @@
 using LinearAlgebra, TSVD
 
 
-include("R.jl")
-
 function AAproxblock(X,H,A, B, lambda,  ell, max_iter, tol)
     _,a2,_ = tsvd(X)
     a2 = a2[1]
@@ -10,7 +8,7 @@ function AAproxblock(X,H,A, B, lambda,  ell, max_iter, tol)
     f = zeros(max_iter,1)
     f[1] = R(X, H, A, B,lambda )
     counter = 1
-    diff = 1e20
+    diff = f[1]
     k,n = size(H)
     m, k = size(A)
     while (diff >= f[1]*tol && counter < max_iter)
@@ -36,7 +34,7 @@ function AAproxblock(X,H,A, B, lambda,  ell, max_iter, tol)
             A[jj,:] = transpose(projsplx(A[jj,:]))
         end
         if (lambda != 0)
-            step = 1 / (LAMBDA)
+            step = 1/LAMBDA
             B = B - 2*step*(-lambda*((H - B*X))*X')
             for jj = 1:k
                 B[jj,:] = transpose(projsplx(B[jj,:]))
@@ -76,4 +74,8 @@ function projsplx(b)
         b[i] = max(b[i] - tmax, 0)
     end
     return b
+end
+
+function R(X, H, A, B, lambda)
+	return norm(X - A*H)^2 + lambda*norm(H - B*X)^2
 end
