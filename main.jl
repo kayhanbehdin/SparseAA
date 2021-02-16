@@ -23,7 +23,7 @@ for i = 1:m
     W[i,:] = W[i,:]/sum(W[i,:])
 end
 X = W*H
-X0 = X
+X0 = X + zeros(m,n)
 Z = randn(size(X))*sigma
 X = Z + X
 idx = findall(x -> x<0,X)
@@ -31,6 +31,12 @@ X[idx] = zeros(length(idx))
 H0 = H + zeros(size(H))
 W0 = W + zeros(size(W))
 ##
-H_min, A, W_min, gap = InitializeMIP(X, H0 .>0, k, ell, 1, env, 8, 8, 0.05)
-println(gap)
-# SAA(X, H, W, zeros(k,m), 1,  ell-10, 150, 1e-4, 8, 30, false)
+H_init, W_init, Wtilde_init, gap = InitializeMIP(X, zeros(k,n), k, ell-10, 1, env, 8, 10, 0.05)
+H, W, Wtilde, f = SAA(X, H_init, W_init, Wtilde_init, 1,  ell-10, 150, 1e-4, 8, 30, false)
+
+
+
+# println(norm(X-W_init*H_init)^2 + norm(H_init - Wtilde_init*X)^2 )
+# println(sum(H0 .> 0) - sum(H.> 0))
+# println(sum(H.< 0))
+println(f)

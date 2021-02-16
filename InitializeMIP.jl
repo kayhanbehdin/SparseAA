@@ -41,10 +41,10 @@ function InitializeMIP(X, Z0, k, ell, M, env, maxTime, maxIter, minGap)
         Lambda[indd] = zeros(size(indd))
         grad = -M*Lambda
         if (c<c_min)
-            Z_min = Z
+            Z_min = Z + zeros(k,n)
             c_min = c
-            W_min = W
-            H_min = H
+            W_min = W + zeros(k,m)
+            H_min = H + zeros(k,n)
         end
         @constraint(model, eta >= c + sum(sum( grad[i,j]*(z[i,j]-Z[i,j]) for i=1:k) for j = 1:n))
         cost[counter] = c
@@ -71,8 +71,10 @@ function InitializeMIP(X, Z0, k, ell, M, env, maxTime, maxIter, minGap)
         t, a = ConvHullProj(transpose(X[i,:]), transpose(H_min), e)
         A[i,:] = transpose(a)
     end
-
-    return H_min, A, W_min, gap
+	H = H_min + zeros(k,n)
+	W = A + zeros(m,k)
+	Wtilde = W_min + zeros(k,m)
+    return H, W, Wtilde, gap
 end
 
 function F(Z, X, M, eta_3)

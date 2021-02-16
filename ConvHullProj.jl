@@ -14,7 +14,7 @@ v = alpha
 theta = 1
 alpha_old = 1000*ones(d,1)
 counter = 1
-while (norm(alpha - alpha_old) > 1e-3 || counter<5)
+while (norm(alpha - alpha_old) > 1e-3 || counter < 5)
     alpha_old = alpha
     y = alpha + theta*(v-alpha)
     temp = y - t*(transpose(V)*V*y - transpose(V)*x)
