@@ -19,7 +19,7 @@ function SAALS(X,H, W, Wt, lambda,  ell, Size, max_iter)
     supchange = 0
     while (counter < max_iter)
         counter = counter + 1
-		println(string("Line Search Iteration: ",counter))
+		println(string("Local Search Iteration: ",counter))
         G = zeros(k,n)
         Z = H.>1e-10
         Z = Z + zeros(k,n)
