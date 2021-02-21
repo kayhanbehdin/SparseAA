@@ -8,3 +8,6 @@ This package obtains a good solution to the Sparse Archetypal Analysis problem,
 
 through Mixed Integer Programming (MIP) based initialization, a block proximal algorithm and a heuristic local search method. 
 The code is written in Julia and a Gurobi license is rquired to use the MIP based initialization. 
+
+##  Usage
+For a tutorial, please refer to [demo.jl](https://cran.r-project.org/web/packages/L0Learn/vignettes/L0Learn-vignette.html).
