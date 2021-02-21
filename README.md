@@ -1,5 +1,7 @@
 # SparseAA
 Sparse Archetypal Analysis 
+### Kayhan Behdin and Rahul Mazumder 
+### Massachusetts Institute of Technology
 
 # Introduction
 This package obtains a good solution to the Sparse Archetypal Analysis problem,
