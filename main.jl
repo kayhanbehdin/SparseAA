@@ -7,10 +7,10 @@ include("SAA.jl")
 ##
 env = Gurobi.Env()
 ##
-m = 40
-k = 2
-n = 50
-ell = 45
+m = 400
+k = 20
+n = 5000
+ell = 20*2000
 sigma = 0.1
 ##
 H = rand(k*n)
@@ -33,6 +33,7 @@ W0 = W + zeros(size(W))
 ##
 H_init, W_init, Wtilde_init, gap = InitializeMIP(X, zeros(k,n), k, ell-10, 1, env, 8, 10, 0.05)
 H, W, Wtilde, f = SAA(X, H_init, W_init, Wtilde_init, 1,  ell-10, 150, 1e-4, 8, 30, false)
+H,W,Wt,Cost, supchange = SAALS(X,H, W, Wtilde, 1,  ell-10, 2, 5)
 
 
 

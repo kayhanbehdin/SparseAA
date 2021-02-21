@@ -24,6 +24,7 @@ function SAA(X, H, W, Wtilde, lambda,  ell, maxIter, tol, len, lambda_max, path)
     L = 10 .^ (range(log(10,lambda_final),stop=log(10,lambda_max),length=len))
     for ilen = 1:len
         lambda = L[len - ilen + 1]
+        println(string("Continuation Iteration: " , ilen))
         H, W, Wtilde, f =  AAproxblock(X, H, W, Wtilde, lambda,  ell, maxIter, tol)
         if path
             H_tot[:,:,ilen] = H
