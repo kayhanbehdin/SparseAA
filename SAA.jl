@@ -6,6 +6,7 @@ using LinearAlgebra, TSVD
 # ell: The sparsity level, tol: Tolerance of convergence                                        #
 # len: The number of points of continuation, lambda_max: The starting value for continuation    #
 # path: if ~= 0, the complete regularization path is returned.                                  #
+# Output arguments. H, W, Wtilde: Output matrices/path, f: Objective value                      #
 #################################################################################################
 
 include("AAproxblock.jl")

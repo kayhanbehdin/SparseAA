@@ -8,6 +8,8 @@ include("onedimmin.jl")
 # Size: The number of candidate coordinates etering/leaving considered in each iteration        #
 # The number of pairs considered in each iteration is Size^2                                    #
 # max_iter: Maximum number of iterations          											    #
+# Output arguments. H, W, Wtilde: Output matrices/path, Cost: Objective value                   #
+# supchange: Number of changes in the support 													#
 #################################################################################################
 
 

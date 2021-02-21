@@ -8,6 +8,7 @@ include("ConvHullProj.jl")
 # k: Rank, ell: Sparsity level, M: An upper bound on H_i,j, env: Gurobi license object		    #
 # maxTime: Maximum runtime in minutes, maxIter: Maximum number of cuts                          #
 # minGap: Minimum dual gap tolerance  													        #
+# Output arguments. H, W, Wtilde: Output matrices, gap: Dual gap 								#
 #################################################################################################
 
 
